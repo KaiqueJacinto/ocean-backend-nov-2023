@@ -1,6 +1,11 @@
 const express = require('express')
 const app = express()
 
+// registrar um Middleware
+// indica que as requisições são body em JSON
+
+app.use(express.json())
+
 const herois = ["Mulher Maravilha", "Capitã Marvel", "Homem de Ferro"]
 
 app.get('/', function (req, res) {
@@ -22,6 +27,17 @@ app.get('/herois/:id', function (req,res){
   else{
     res.send(herois[req.params.id])
   }
+})
+
+app.post('/herois', function (req,res) {
+  const heroi = req.body.heroi
+  if (herois.includes(heroi)){
+    res.send("Item já está na lista! (NÃO FOI INSERIDO)")
+  }else{
+    herois.push(heroi)
+    res.send("Heroi inserido na lista: "+heroi)
+  }
+  
 })
 
 app.listen(3000)
