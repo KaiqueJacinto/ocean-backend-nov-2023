@@ -15,5 +15,13 @@ app.get('/herois', function (req,res){
   res.send(herois)
 })
 
+app.get('/herois/:id', function (req,res){
+  if (req.params.id > herois.length-1){
+    res.send("Not Found")
+  }
+  else{
+    res.send(herois[req.params.id])
+  }
+})
 
 app.listen(3000)
