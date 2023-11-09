@@ -16,10 +16,12 @@ app.get('/oi', function (req, res) {
   res.send('Olá, tudo bem!')
 })
 
+// read all
 app.get('/herois', function (req,res){
   res.send(herois)
 })
 
+// read id
 app.get('/herois/:id', function (req,res){
   if (req.params.id > herois.length-1){
     res.send("Not Found")
@@ -29,6 +31,7 @@ app.get('/herois/:id', function (req,res){
   }
 })
 
+// create
 app.post('/herois', function (req,res) {
   const heroi = req.body.heroi
   if (herois.includes(heroi)){
@@ -38,6 +41,12 @@ app.post('/herois', function (req,res) {
     res.send("Heroi inserido na lista: "+heroi)
   }
   
+})
+
+// Update
+app.put("/herois/:id", function (req,res) {
+  herois[req.params.id] = req.body.heroi
+  res.send("Alterado com sucesso!")
 })
 
 app.listen(3000)
