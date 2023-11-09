@@ -6,7 +6,6 @@ app.get('/', function (req, res) {
 })
 
 app.get('/oi', function (req, res) {
-  console.log(req)
   res.send('Olá, tudo bem!')
 })
 
