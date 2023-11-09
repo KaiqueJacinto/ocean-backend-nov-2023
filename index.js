@@ -18,7 +18,7 @@ app.get('/oi', function (req, res) {
 
 // read all
 app.get('/herois', function (req,res){
-  res.send(herois)
+  res.send(herois.filter(Boolean))
 })
 
 // read id
@@ -47,6 +47,13 @@ app.post('/herois', function (req,res) {
 app.put("/herois/:id", function (req,res) {
   herois[req.params.id] = req.body.heroi
   res.send("Alterado com sucesso!")
+})
+
+// delete
+
+app.delete('/herois/:id', function(req,res){
+  delete herois[req.params.id]
+  res.send('Item deletado com sucesso')
 })
 
 app.listen(3000)
